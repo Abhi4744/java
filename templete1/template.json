@@ -5,6 +5,9 @@
         "subscriptionId": {
             "type": "string"
         },
+        "resourceGroupName": {
+            "type": "string"
+        },
         "name": {
             "type": "string"
         },
@@ -49,9 +52,9 @@
             "name": "[parameters('name')]",
             "type": "Microsoft.Web/sites",
             "location": "[parameters('location')]",
-            "tags": null,
+            "tags": {},
             "dependsOn": [
-                "microsoft.insights/components/jpwapp007",
+                "microsoft.insights/components/testarm123",
                 "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
             ],
             "properties": {
@@ -60,7 +63,7 @@
                     "appSettings": [
                         {
                             "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-                            "value": "[reference('microsoft.insights/components/jpwapp007', '2015-05-01').ConnectionString]"
+                            "value": "[reference('microsoft.insights/components/testarm123', '2015-05-01').ConnectionString]"
                         },
                         {
                             "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
@@ -88,7 +91,7 @@
             "type": "Microsoft.Web/serverfarms",
             "location": "[parameters('location')]",
             "kind": "linux",
-            "tags": null,
+            "tags": {},
             "dependsOn": [],
             "properties": {
                 "name": "[parameters('hostingPlanName')]",
@@ -105,17 +108,44 @@
         },
         {
             "apiVersion": "2020-02-02-preview",
-            "name": "jpwapp007",
+            "name": "testarm123",
             "type": "microsoft.insights/components",
             "location": "eastus",
-            "tags": null,
-            "dependsOn": [],
+            "tags": {},
+            "dependsOn": [
+                "newWorkspaceTemplate"
+            ],
             "properties": {
                 "ApplicationId": "[parameters('name')]",
                 "Request_Source": "IbizaWebAppExtensionCreate",
                 "Flow_Type": "Redfield",
                 "Application_Type": "web",
                 "WorkspaceResourceId": "/subscriptions/48e8b57d-7f2b-4448-a152-5c1d5310fe35/resourceGroups/DefaultResourceGroup-EUS/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-48e8b57d-7f2b-4448-a152-5c1d5310fe35-EUS"
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "name": "newWorkspaceTemplate",
+            "resourceGroup": "DefaultResourceGroup-EUS",
+            "subscriptionId": "[parameters('subscriptionId')]",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                            "apiVersion": "2020-08-01",
+                            "name": "DefaultWorkspace-48e8b57d-7f2b-4448-a152-5c1d5310fe35-EUS",
+                            "type": "Microsoft.OperationalInsights/workspaces",
+                            "location": "eastus",
+                            "properties": {}
+                        }
+                    ]
+                }
             }
         }
     ]
