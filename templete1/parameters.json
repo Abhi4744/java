@@ -9,22 +9,37 @@
             "value": "Anirudh"
         },
         "name": {
-            "value": "newtest321"
+            "value": "new321"
         },
         "location": {
             "value": "East US"
         },
         "hostingPlanName": {
-            "value": "jpasp"
+            "value": "ASP-Anirudh-800c"
         },
         "serverFarmResourceGroup": {
-            "value": "new"
+            "value": "Anirudh"
         },
         "alwaysOn": {
             "value": false
         },
         "ftpsState": {
             "value": "FtpsOnly"
+        },
+        "sku": {
+            "value": "Basic"
+        },
+        "skuCode": {
+            "value": "B1"
+        },
+        "numberOfWorkers": {
+            "value": "1"
+        },
+        "workerSize": {
+            "value": "0"
+        },
+        "workerSizeId": {
+            "value": "0"
         },
         "linuxFxVersion": {
             "value": "JAVA|17-java17"

@@ -26,6 +26,21 @@
         "ftpsState": {
             "type": "string"
         },
+        "sku": {
+            "type": "string"
+        },
+        "skuCode": {
+            "type": "string"
+        },
+        "workerSize": {
+            "type": "string"
+        },
+        "workerSizeId": {
+            "type": "string"
+        },
+        "numberOfWorkers": {
+            "type": "string"
+        },
         "linuxFxVersion": {
             "type": "string"
         }
@@ -39,7 +54,8 @@
             "location": "[parameters('location')]",
             "tags": null,
             "dependsOn": [
-                "microsoft.insights/components/newtest321"
+                "microsoft.insights/components/new321",
+                "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
             ],
             "properties": {
                 "name": "[parameters('name')]",
@@ -47,7 +63,7 @@
                     "appSettings": [
                         {
                             "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-                            "value": "[reference('microsoft.insights/components/newtest321', '2015-05-01').ConnectionString]"
+                            "value": "[reference('microsoft.insights/components/new321', '2015-05-01').ConnectionString]"
                         },
                         {
                             "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
@@ -70,8 +86,29 @@
             }
         },
         {
+            "apiVersion": "2018-11-01",
+            "name": "[parameters('hostingPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[parameters('location')]",
+            "kind": "linux",
+            "tags": null,
+            "dependsOn": [],
+            "properties": {
+                "name": "[parameters('hostingPlanName')]",
+                "workerSize": "[parameters('workerSize')]",
+                "workerSizeId": "[parameters('workerSizeId')]",
+                "numberOfWorkers": "[parameters('numberOfWorkers')]",
+                "reserved": true,
+                "zoneRedundant": false
+            },
+            "sku": {
+                "Tier": "[parameters('sku')]",
+                "Name": "[parameters('skuCode')]"
+            }
+        },
+        {
             "apiVersion": "2020-02-02-preview",
-            "name": "newtest321",
+            "name": "new321",
             "type": "microsoft.insights/components",
             "location": "eastus",
             "tags": null,
