@@ -3,43 +3,28 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "subscriptionId": {
-            "value": "48e8b57d-7f2b-4448-a152-5c1d5310fe35"
+            "value": "d2e386a1-8eb8-4ced-888b-da7df788bf18"
         },
         "resourceGroupName": {
-            "value": "testarm"
+            "value": "Anirudh"
         },
         "name": {
-            "value": "testarm123"
+            "value": "newtest321"
         },
         "location": {
             "value": "East US"
         },
         "hostingPlanName": {
-            "value": "ASP-testarm-b4bd"
+            "value": "jpasp"
         },
         "serverFarmResourceGroup": {
-            "value": "testarm"
+            "value": "new"
         },
         "alwaysOn": {
             "value": false
         },
         "ftpsState": {
             "value": "FtpsOnly"
-        },
-        "sku": {
-            "value": "Basic"
-        },
-        "skuCode": {
-            "value": "B1"
-        },
-        "numberOfWorkers": {
-            "value": "1"
-        },
-        "workerSize": {
-            "value": "0"
-        },
-        "workerSizeId": {
-            "value": "0"
         },
         "linuxFxVersion": {
             "value": "JAVA|17-java17"

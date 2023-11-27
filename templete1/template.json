@@ -26,21 +26,6 @@
         "ftpsState": {
             "type": "string"
         },
-        "sku": {
-            "type": "string"
-        },
-        "skuCode": {
-            "type": "string"
-        },
-        "workerSize": {
-            "type": "string"
-        },
-        "workerSizeId": {
-            "type": "string"
-        },
-        "numberOfWorkers": {
-            "type": "string"
-        },
         "linuxFxVersion": {
             "type": "string"
         }
@@ -52,10 +37,9 @@
             "name": "[parameters('name')]",
             "type": "Microsoft.Web/sites",
             "location": "[parameters('location')]",
-            "tags": {},
+            "tags": null,
             "dependsOn": [
-                "microsoft.insights/components/testarm123",
-                "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+                "microsoft.insights/components/newtest321"
             ],
             "properties": {
                 "name": "[parameters('name')]",
@@ -63,7 +47,7 @@
                     "appSettings": [
                         {
                             "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-                            "value": "[reference('microsoft.insights/components/testarm123', '2015-05-01').ConnectionString]"
+                            "value": "[reference('microsoft.insights/components/newtest321', '2015-05-01').ConnectionString]"
                         },
                         {
                             "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
@@ -86,32 +70,11 @@
             }
         },
         {
-            "apiVersion": "2018-11-01",
-            "name": "[parameters('hostingPlanName')]",
-            "type": "Microsoft.Web/serverfarms",
-            "location": "[parameters('location')]",
-            "kind": "linux",
-            "tags": {},
-            "dependsOn": [],
-            "properties": {
-                "name": "[parameters('hostingPlanName')]",
-                "workerSize": "[parameters('workerSize')]",
-                "workerSizeId": "[parameters('workerSizeId')]",
-                "numberOfWorkers": "[parameters('numberOfWorkers')]",
-                "reserved": true,
-                "zoneRedundant": false
-            },
-            "sku": {
-                "Tier": "[parameters('sku')]",
-                "Name": "[parameters('skuCode')]"
-            }
-        },
-        {
             "apiVersion": "2020-02-02-preview",
-            "name": "testarm123",
+            "name": "newtest321",
             "type": "microsoft.insights/components",
             "location": "eastus",
-            "tags": {},
+            "tags": null,
             "dependsOn": [
                 "newWorkspaceTemplate"
             ],
@@ -120,7 +83,7 @@
                 "Request_Source": "IbizaWebAppExtensionCreate",
                 "Flow_Type": "Redfield",
                 "Application_Type": "web",
-                "WorkspaceResourceId": "/subscriptions/48e8b57d-7f2b-4448-a152-5c1d5310fe35/resourceGroups/DefaultResourceGroup-EUS/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-48e8b57d-7f2b-4448-a152-5c1d5310fe35-EUS"
+                "WorkspaceResourceId": "/subscriptions/d2e386a1-8eb8-4ced-888b-da7df788bf18/resourceGroups/DefaultResourceGroup-EUS/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-d2e386a1-8eb8-4ced-888b-da7df788bf18-EUS"
             }
         },
         {
@@ -139,7 +102,7 @@
                     "resources": [
                         {
                             "apiVersion": "2020-08-01",
-                            "name": "DefaultWorkspace-48e8b57d-7f2b-4448-a152-5c1d5310fe35-EUS",
+                            "name": "DefaultWorkspace-d2e386a1-8eb8-4ced-888b-da7df788bf18-EUS",
                             "type": "Microsoft.OperationalInsights/workspaces",
                             "location": "eastus",
                             "properties": {}
